@@ -1,7 +1,7 @@
 # Doo_Learn_Oss
 
-*제 오픈 소스 소프트웨어 실습 레포지 입니다.
-*목표 : github 저장소 생성 및 관리 실습
+제 오픈 소스 소프트웨어 실습 레포지 입니다.
+
 
 
 ## 실습  : calculator_practice
