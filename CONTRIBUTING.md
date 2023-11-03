@@ -12,4 +12,4 @@ request this way before starting to code.
 If you have a general question about activeadmin, you can post it on [Stack
 Overflow], the issue tracker is only for bugs and feature requests.
 
-[new issue]: https://github.com/Learn_Oss/Learn_Oss/issues/new
+[new issue]:https://github.com/DooDooLee/Learn_Oss/issues/new
