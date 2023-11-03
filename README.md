@@ -2,7 +2,7 @@
 
 제 오픈 소스 소프트웨어 실습 레포지 입니다.
 
-## 실습 1 : calculator_practice
+## 실습  : calculator_practice
 * pyqt5 모듈 설치 (python -m pip install pyqt5)
 * 파이썬 파일 실행 (python calculator_main.py)
 
