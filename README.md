@@ -11,6 +11,9 @@
 * github 저장소 생성 및 관리 실습
 * PyQt5 기반 계산기 기능 및 사용방법 개선
 
+## Code of Conduct
+
+[code_of_conduct.md](https://github.com/DooDooLee/Doo_Learn_Oss/blob/main/code_of_conduct.md)
 ## Contributing
 
 [CONTRIBUTING.md](https://github.com/DooDooLee/Doo_Learn_Oss/blob/main/CONTRIBUTING.md)
