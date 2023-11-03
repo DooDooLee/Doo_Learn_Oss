@@ -1,15 +1,10 @@
 ## Contributing
 
-First off, thank you for considering contributing to learn_oss. It's people
-like you that make Active Admin such a great tool.
+보잘것 없는 저에게 기여해주셔서 감사합니다.
 
-### Where do I go from here?
+### HOW to contribute?
 
-If you've noticed a bug or have a feature request, [make one][new issue]! It's
-generally best if you get confirmation of your bug or approval for your feature
-request this way before starting to code.
+[Here][new issue]
 
-If you have a general question about activeadmin, you can post it on [Stack
-Overflow], the issue tracker is only for bugs and feature requests.
 
 [new issue]:https://github.com/DooDooLee/Learn_Oss/issues/new
