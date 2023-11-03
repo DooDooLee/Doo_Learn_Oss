@@ -11,4 +11,4 @@ PyQt5 installation via pip is required.
 [CONTRIBUTING.md](https://github.com/DooDooLee/Doo_Learn_Oss/blob/main/CONTRIBUTING.md)
 
 ## License
-MIT License - see the [LICENSE.md](LICENSE.md)
+MIT License - [LICENSE.md](LICENSE.md)
