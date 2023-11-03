@@ -23,5 +23,5 @@
 
 ## License
 
-MIT License - [LICENSE.md](LICENSE.md)
+MIT License - [LICENSE.md](LICENSE)
 
