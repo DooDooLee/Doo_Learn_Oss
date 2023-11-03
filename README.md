@@ -1,12 +1,12 @@
-<span style="color: #0074d9; font-size: 24px; font-weight: bold;">Doo_Learn_Oss</span>
+# Doo_Learn_Oss
 
 제 오픈 소스 소프트웨어 실습 레포지 입니다.
 
-<span style="color: #ff5733;">실습 1 : calculator_practice</span>
-* pyqt5 모듈 설치 (`python -m pip install pyqt5`)
-* 파이썬 파일 실행 (`python calculator_main.py`)
+실습 1 : calculator_practice
+* pyqt5 모듈 설치 (python -m pip install pyqt5)
+* 파이썬 파일 실행 (python calculator_main.py)
 
-## <span style="color: #3d9970;">Goals</span>
+## Goals
 
 * github 저장소 생성 및 관리 실습
 * PyQt5 기반 계산기 기능 및 사용방법 개선
@@ -17,4 +17,5 @@
 
 ## License
 
-<span style="color: #ff5733;">MIT License</span> - [LICENSE.md](LICENSE.md)
+MIT License - [LICENSE.md](LICENSE.md)
+제목들 색깔좀 입혀주고 이쁘게꾸며봐
