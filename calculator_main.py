@@ -1,5 +1,7 @@
+##202130443 이승엽
 import sys
 from PyQt5.QtWidgets import *
+from math import sqrt
 
 class Main(QDialog):
     def __init__(self):
@@ -7,6 +9,11 @@ class Main(QDialog):
         self.init_ui()
 
     def init_ui(self):
+
+        # 등호가 눌렸는지, 수식을 저장할 리스트 초기화
+        self.equal_pressed = False
+        self.expression = []
+
         main_layout = QVBoxLayout()
 
         ### 각 위젯을 배치할 레이아웃을 미리 만들어 둠
@@ -65,6 +72,12 @@ class Main(QDialog):
         button_clear2.clicked.connect(self.button_clear_clicked)
         button_backspace.clicked.connect(self.button_backspace_clicked)
 
+        # %, 1/x, x^2, √x 버튼 클릭 시 시그널 설정
+        button_modulo.clicked.connect(self.button_modulo_clicked)
+        button_reciprocal.clicked.connect(self.button_reciprocal_clicked)
+        button_square.clicked.connect(self.button_square_clicked)
+        button_square_root.clicked.connect(self.button_square_root_clicked)
+
         ### 사칙연산 버튼 생성
         button_plus = QPushButton("+")
         button_minus = QPushButton("-")
@@ -111,30 +124,97 @@ class Main(QDialog):
     ### functions ###
     #################
     def number_button_clicked(self, num):
-        equation = self.equation.text()
-        equation += str(num)
-        self.equation.setText(equation)
+        if self.equal_pressed:
+            self.equation.setText(str(num))
+            self.expression = [num]
+            self.equal_pressed = False
+        else:
+            equation = self.equation.text()
+            equation += str(num)
+            self.expression.append(num)
+            self.equation.setText(equation)
+
 
     def button_operation_clicked(self, operation):
-        equation = self.equation.text()
-        equation += operation
-        self.equation.setText(equation)
+        self.equal_pressed = False
+        self.equation.setText("")
+        self.expression.append(operation)
+        
 
     def button_equal_clicked(self):
-        equation = self.equation.text()
+        self.equal_pressed = True
         try:
-            solution = eval(equation)
+            solution = eval(''.join(map(str, self.expression)))
             self.equation.setText(str(solution))
+            self.expression = [solution]
         except Exception as e:
             self.equation.setText("Error")
 
     def button_clear_clicked(self):
+        self.equal_pressed = False
+        self.expression.clear()
         self.equation.setText("")
 
     def button_backspace_clicked(self):
-        equation = self.equation.text()
-        equation = equation[:-1]
+        self.equal_pressed = False
+        if self.expression:
+            if isinstance(self.expression[-1], (int, float)):
+                self.expression[-1] = str(self.expression[-1])[:-1]
+                if not self.expression[-1]:
+                    self.expression.pop()
+            elif isinstance(self.expression[-1], str):
+                self.expression[-1] = self.expression[-1][:-1]
+                if not self.expression[-1]:
+                    self.expression.pop()
+
+        equation = ''.join(map(str, self.expression))
         self.equation.setText(equation)
+
+
+    def button_modulo_clicked(self):
+        self.equal_pressed = False
+        self.equation.setText("")
+        self.expression.append("%")
+        
+
+    def calculate_expression(self):
+        try:
+            result = eval(''.join(map(str, self.expression)))
+            self.equation.setText(str(result))
+            self.expression = [result]
+        except Exception as e:
+            self.equation.setText("Error")
+
+    def button_square_clicked(self):
+        self.equal_pressed = True
+        if self.expression:
+            self.expression.append('**2')
+            equation = ''.join(map(str, self.expression))
+            self.equation.setText(equation)
+            self.calculate_expression()
+
+    def button_square_root_clicked(self):
+        self.equal_pressed = True
+        if self.expression:
+            self.expression.append('**(1/2)')
+            equation = ''.join(map(str, self.expression))
+            self.equation.setText(equation)
+            self.calculate_expression()
+
+    def button_reciprocal_clicked(self):
+        self.equal_pressed = True
+        if self.expression:
+            try:
+                reciprocal = 1 / eval(''.join(map(str, self.expression)))
+                self.expression = [reciprocal]
+                self.equation.setText(str(reciprocal))
+            except ZeroDivisionError:
+                self.equation.setText("Error: Division by zero")
+            except Exception as e:
+                self.equation.setText("Error")
+
+
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
