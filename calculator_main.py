@@ -9,6 +9,8 @@ class Main(QDialog):
         self.init_ui()
 
     def init_ui(self):
+
+        # 등호가 눌렸는지, 수식을 저장할 리스트 초기화
         self.equal_pressed = False
         self.expression = []
 
@@ -203,7 +205,6 @@ class Main(QDialog):
         self.equal_pressed = True
         if self.expression:
             try:
-                # Calculate the reciprocal of the entire expression
                 reciprocal = 1 / eval(''.join(map(str, self.expression)))
                 self.expression = [reciprocal]
                 self.equation.setText(str(reciprocal))
