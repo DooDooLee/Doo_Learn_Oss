@@ -148,9 +148,20 @@ class Main(QDialog):
     def button_backspace_clicked(self):
         self.equal_pressed = False
         if self.expression:
-            self.expression.pop()
+            if isinstance(self.expression[-1], (int, float)):
+                self.expression[-1] = str(self.expression[-1])[:-1]
+                if not self.expression[-1]:
+                    self.expression.pop()
+            elif isinstance(self.expression[-1], str):
+                self.expression[-1] = self.expression[-1][:-1]
+                if not self.expression[-1]:
+                    self.expression.pop()
+
         equation = ''.join(map(str, self.expression))
         self.equation.setText(equation)
+
+
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
