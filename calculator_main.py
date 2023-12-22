@@ -1,5 +1,7 @@
+##202130443 이승엽
 import sys
 from PyQt5.QtWidgets import *
+from math import sqrt
 
 class Main(QDialog):
     def __init__(self):
@@ -67,6 +69,12 @@ class Main(QDialog):
         button_clear.clicked.connect(self.button_clear_clicked)
         button_clear2.clicked.connect(self.button_clear_clicked)
         button_backspace.clicked.connect(self.button_backspace_clicked)
+
+        # %, 1/x, x^2, √x 버튼 클릭 시 시그널 설정
+        button_modulo.clicked.connect(self.button_modulo_clicked)
+        button_reciprocal.clicked.connect(self.button_reciprocal_clicked)
+        button_square.clicked.connect(self.button_square_clicked)
+        button_square_root.clicked.connect(self.button_square_root_clicked)
 
         ### 사칙연산 버튼 생성
         button_plus = QPushButton("+")
@@ -159,6 +167,50 @@ class Main(QDialog):
 
         equation = ''.join(map(str, self.expression))
         self.equation.setText(equation)
+
+
+    def button_modulo_clicked(self):
+        self.equal_pressed = False
+        self.equation.setText("")
+        self.expression.append("%")
+        
+
+    def calculate_expression(self):
+        try:
+            result = eval(''.join(map(str, self.expression)))
+            self.equation.setText(str(result))
+            self.expression = [result]
+        except Exception as e:
+            self.equation.setText("Error")
+
+    def button_square_clicked(self):
+        self.equal_pressed = True
+        if self.expression:
+            self.expression.append('**2')
+            equation = ''.join(map(str, self.expression))
+            self.equation.setText(equation)
+            self.calculate_expression()
+
+    def button_square_root_clicked(self):
+        self.equal_pressed = True
+        if self.expression:
+            self.expression.append('**(1/2)')
+            equation = ''.join(map(str, self.expression))
+            self.equation.setText(equation)
+            self.calculate_expression()
+
+    def button_reciprocal_clicked(self):
+        self.equal_pressed = True
+        if self.expression:
+            try:
+                # Calculate the reciprocal of the entire expression
+                reciprocal = 1 / eval(''.join(map(str, self.expression)))
+                self.expression = [reciprocal]
+                self.equation.setText(str(reciprocal))
+            except ZeroDivisionError:
+                self.equation.setText("Error: Division by zero")
+            except Exception as e:
+                self.equation.setText("Error")
 
 
 
