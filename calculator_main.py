@@ -7,6 +7,9 @@ class Main(QDialog):
         self.init_ui()
 
     def init_ui(self):
+        self.equal_pressed = False
+        self.expression = []
+
         main_layout = QVBoxLayout()
 
         ### 각 위젯을 배치할 레이아웃을 미리 만들어 둠
@@ -111,29 +114,42 @@ class Main(QDialog):
     ### functions ###
     #################
     def number_button_clicked(self, num):
-        equation = self.equation.text()
-        equation += str(num)
-        self.equation.setText(equation)
+        if self.equal_pressed:
+            self.equation.setText(str(num))
+            self.expression = [num]
+            self.equal_pressed = False
+        else:
+            equation = self.equation.text()
+            equation += str(num)
+            self.expression.append(num)
+            self.equation.setText(equation)
+
 
     def button_operation_clicked(self, operation):
-        equation = self.equation.text()
-        equation += operation
-        self.equation.setText(equation)
+        self.equal_pressed = False
+        self.equation.setText("")
+        self.expression.append(operation)
+        
 
     def button_equal_clicked(self):
-        equation = self.equation.text()
+        self.equal_pressed = True
         try:
-            solution = eval(equation)
+            solution = eval(''.join(map(str, self.expression)))
             self.equation.setText(str(solution))
+            self.expression = [solution]
         except Exception as e:
             self.equation.setText("Error")
 
     def button_clear_clicked(self):
+        self.equal_pressed = False
+        self.expression.clear()
         self.equation.setText("")
 
     def button_backspace_clicked(self):
-        equation = self.equation.text()
-        equation = equation[:-1]
+        self.equal_pressed = False
+        if self.expression:
+            self.expression.pop()
+        equation = ''.join(map(str, self.expression))
         self.equation.setText(equation)
 
 if __name__ == '__main__':
